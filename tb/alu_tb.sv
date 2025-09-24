@@ -19,10 +19,23 @@ module alu_tb;
 
   // Generate stimuli to test the ALU
   initial begin
-    in_a = '0;
-    in_b = '0;
-    opcode = '0;
-    #10ns;
-    // Complete your testbench code here
+        in_a = 20; in_b = 5; opcode = 3'b000; #10; 
+        in_a = 20; in_b = 5; opcode = 3'b001; #10; 
+        in_a = 20; in_b = 5; opcode = 3'b010; #10; 
+        in_a = 20; in_b = 5; opcode = 3'b011; #10; 
+        in_a = 20; in_b = 5; opcode = 3'b100; #10; 
+        in_a = 20; in_b = 0; opcode = 3'b101; #10; 
+        in_a = 20; in_b = 0; opcode = 3'b110; #10; 
+        in_a = 0;  in_b = 20; opcode = 3'b111; #10; 
+
+        repeat (20) begin
+            in_a   = $urandom_range(-50, 50);
+            in_b   = $urandom_range(-50, 50);
+            opcode = $urandom_range(0, 7);
+            #10;
+        end
+
+        $finish;
+    end
   end
 endmodule
